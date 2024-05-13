@@ -18,4 +18,3 @@ router.post("/:id/remove",hasSession,artistViewController.remove);
 
 
 export default router;
-
