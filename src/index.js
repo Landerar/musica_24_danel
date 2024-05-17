@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import session from "express-session";
 import router from "./routes/router.js";
-import bcryptjs from "bcryptjs";
 
 dotenv.config();
 
@@ -26,6 +25,11 @@ const sessionData = {
 }
 const app = express();
 app.use(session(sessionData));
+app.use(function(req,res,next){
+    res.locals.session = req.session;
+    next();
+});
+
 app.use(express.static("public")); // permite mostrar archivos en la carpeta public
 
 app.set("views","./src/views");
